@@ -209,23 +209,20 @@ y_train.shape
 
 
 ANN_model = keras.Sequential()
-ANN_model.add(Dense(50, input_dim = 8))
+ANN_model.add(Dense(50, input_dim=8))
 ANN_model.add(Activation('relu'))
 ANN_model.add(Dense(150))
 ANN_model.add(Activation('relu'))
-ANN_model.add(Dense(150))
-ANN_model.add(Activation('relu'))
-ANN_model.add(Activation('softmax'))
-ANN_model.add(Dense(1))
-ANN_model.compile(loss ='categorical_crossentropy' , optimizer= 'adam')
+ANN_model.add(Dense(1, activation='sigmoid'))  # Changed to sigmoid activation
+ANN_model.compile(loss='binary_crossentropy', optimizer='adam')  # Changed loss function
 ANN_model.summary()
 
 
 # In[109]:
 
 
-ANN_model.compile(optimizer='Adam', loss='categorical_crossentropy')
-epochs_hist = ANN_model.fit(x_train, y_train, epochs = 10 , batch_size = 50 , validation_split = 0.2)
+ANN_model.compile(optimizer='Adam', loss='binary_crossentropy')
+epochs_hist = ANN_model.fit(x_train, y_train, epochs = 100 , batch_size = 30 , validation_split = 0.2)
 
 
 # In[110]:
